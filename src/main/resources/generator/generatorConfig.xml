@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <classPathEntry
+            location="C:\Jar\mysql-connector-java-5.1.35.jar"/>
+
+    <context id="MysqlContext" targetRuntime="MyBatis3">
+        <!-- 生成的pojo，将implements Serializable-->
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <!-- 数据库链接URL、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://116.62.40.106:3306/test_server"
+                        userId="root"
+                        password="wuyun@dm1n">
+        </jdbcConnection>
+
+        <!--
+        默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer
+            true，把JDBC DECIMAL 和 NUMERIC 类型解析为java.math.BigDecimal
+        -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="true" />
+        </javaTypeResolver>
+
+        <!--
+        生成model模型，对应的包路径，以及文件存放路径(targetProject)，targetProject可以指定具体的路径,如./src/main/java，
+        也可以使用“MAVEN”来自动生成，这样生成的代码会在target/generatord-source目录下
+        -->
+
+        <!-- Model生成 -->
+        <javaModelGenerator targetPackage="com.ihangjing.waimai.pojo"
+                            targetProject="./src/main/java"/>
+
+        <!-- MapperXML生成 -->
+        <sqlMapGenerator targetPackage="mapping"
+                         targetProject="src/main/resources"/>
+
+        <!-- Mapper接口生成 -->
+        <javaClientGenerator targetPackage="com.ihangjing.waimai.dao"
+                             targetProject="./src/main/java" type="XMLMAPPER" />
+
+        <!-- 需要映射的表 -->
+        <!-- 列出要生成代码的所有表，这里配置的是不生成Example文件 -->
+        <!-- <table tableName="Back_User" domainObjectName="BackUser"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" ></table>-->
+        <table tableName="asset_borrow_order" domainObjectName="AssetBorrowOrder"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" ></table>
+    </context>
+
+</generatorConfiguration>
